@@ -9,12 +9,13 @@
 #import "NSObject+ThirdAPIServiceProtocol.h"
 #import "ZCThirdServiceManager.h"
 #import "ZCThirdService.h"
-#import "ZCGetRequest.h"
 
 @implementation NSObject (ThirdAPIServiceProtocol)
 - (void)sendRequestWithURL:(NSString *)url param:(NSString *)param
 {
-    id service = [ZCGetRequest new];
+    //通过反射接触服务提供方的对象耦合
+    Class cls = NSClassFromString(@"ZCGetRequest");
+    id service = [cls new];
     ZCThirdServiceManager *manager = [[ZCThirdServiceManager alloc] initWithService:service];
     manager.url = url;
     manager.param = param;

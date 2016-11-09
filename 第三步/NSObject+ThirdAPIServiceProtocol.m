@@ -13,7 +13,7 @@
 @implementation NSObject (ThirdAPIServiceProtocol)
 - (void)sendRequestWithURL:(NSString *)url param:(NSString *)param
 {
-    //通过反射接触服务提供方的对象耦合
+    //通过反射解除服务提供方的对象耦合
     Class cls = NSClassFromString(@"ZCGetRequest");
     id service = [cls new];
     ZCThirdServiceManager *manager = [[ZCThirdServiceManager alloc] initWithService:service];
